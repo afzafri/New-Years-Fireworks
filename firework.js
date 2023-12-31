@@ -23,7 +23,7 @@ class Firework {
 
         if (xDir < 0) { 
             xVel *= -1
-            console.log(xVel, -yVel)
+            // console.log(xVel, -yVel)
         }
         
         return {

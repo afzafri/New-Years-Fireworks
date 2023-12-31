@@ -5,19 +5,23 @@ function setup() {
     rectMode(CENTER);
 }
 
+let targetTime = new Date((new Date).getFullYear() + 1, 0, 1) // January 1st of next year
 function getCountdownTime() {
-    // let now = new Date()
-    // let hours = 23 - now.getHours()
-    // let minutes = 60 - now.getMinutes()
-    // let seconds = 60 - now.getSeconds()
-    // if (hours < 10) hours = `0${hours}`
-    // if (minutes < 10) minutes = `0${minutes}`
-    // if (seconds < 10) seconds = `0${seconds}`
     let now = new Date()
-    let hours = `00`
-    let minutes = `00`
-    let seconds = `10`
-    return `Happy New Year!`
+
+    if (now >= targetTime) {
+        var msgDone = "Happy New Year!";
+        animateTitle(msgDone);
+        return msgDone;
+    }
+
+    let timeDifferenceMilliseconds = targetTime.getTime() - now.getTime();
+    let remainingTime = new Date(timeDifferenceMilliseconds);
+    let remainingSeconds = Math.floor((timeDifferenceMilliseconds / 1000) % 60);
+    let remainingMinutes = Math.floor((timeDifferenceMilliseconds / (1000 * 60)) % 60);
+    let remainingHours = Math.floor((timeDifferenceMilliseconds / (1000 * 60 * 60)) % 24);
+
+    return `${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
 function draw() {
@@ -48,3 +52,18 @@ function mouseReleased() {
     }
     fireworks.push(new Firework(target))
 }
+
+function animateTitle(Title = "Hello, World!", delay = 300) {
+    let counter = 0;
+    let direction = true;
+    aniTitle = setInterval(function () {
+        if (counter == Title.length)
+            direction = false;
+        if (counter == false)
+            direction = true;
+        counter = (direction == true) ? ++counter : --counter;
+        newtitle = (counter == 0) ? " " : Title.slice(0, counter);
+        document.title = newtitle;
+    }, delay)
+}
+
