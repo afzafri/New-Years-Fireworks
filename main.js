@@ -6,14 +6,18 @@ function setup() {
 }
 
 function getCountdownTime() {
+    // let now = new Date()
+    // let hours = 23 - now.getHours()
+    // let minutes = 60 - now.getMinutes()
+    // let seconds = 60 - now.getSeconds()
+    // if (hours < 10) hours = `0${hours}`
+    // if (minutes < 10) minutes = `0${minutes}`
+    // if (seconds < 10) seconds = `0${seconds}`
     let now = new Date()
-    let hours = 23 - now.getHours()
-    let minutes = 60 - now.getMinutes()
-    let seconds = 60 - now.getSeconds()
-    if (hours < 10) hours = `0${hours}`
-    if (minutes < 10) minutes = `0${minutes}`
-    if (seconds < 10) seconds = `0${seconds}`
-    return `${hours}:${minutes}:${seconds}`
+    let hours = `00`
+    let minutes = `00`
+    let seconds = `10`
+    return `Happy New Year!`
 }
 
 function draw() {
@@ -24,7 +28,7 @@ function draw() {
         textAlign(CENTER, CENTER);
         text("click for fireworks", window.innerWidth / 2, window.innerHeight / 2);
     }else {
-        textSize(140);
+        textSize(100);
         fill(255, 255, 255, 10)
         noStroke()
         textAlign(CENTER, CENTER);
