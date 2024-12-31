@@ -7,16 +7,21 @@ function setup() {
 
 let targetTime = new Date((new Date).getFullYear() + 1, 0, 1) // January 1st of next year
 function getCountdownTime() {
-    let now = new Date()
+    let now = new Date();
 
-    if (now >= targetTime) {
-        var msgDone = "Happy New Year!";
+    // Check if it's January 1st
+    if (now.getMonth() === 0 && now.getDate() === 1) {
+        let msgDone = "Happy New Year!";
         animateTitle(msgDone);
         return msgDone;
     }
 
+    // Check if the target time has passed and it is NOT January 1st
+    if (now >= targetTime) {
+        targetTime = new Date((new Date).getFullYear() + 1, 0, 1); // Reset target for the next year
+    }
+
     let timeDifferenceMilliseconds = targetTime.getTime() - now.getTime();
-    let remainingTime = new Date(timeDifferenceMilliseconds);
     let remainingSeconds = Math.floor((timeDifferenceMilliseconds / 1000) % 60);
     let remainingMinutes = Math.floor((timeDifferenceMilliseconds / (1000 * 60)) % 60);
     let remainingHours = Math.floor((timeDifferenceMilliseconds / (1000 * 60 * 60)) % 24);
